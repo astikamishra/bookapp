@@ -1,0 +1,21 @@
+<p>
+    <!-- #docregion toolbar-simple -->
+    <mat-toolbar>
+    <span>Favorite Books</span>
+    </mat-toolbar>
+    <mat-form-field appearance="fill">
+        <mat-label>Search book</mat-label>
+        <input type="text" name="searchString" matInput  [(ngModel)]="searchString" >
+    </mat-form-field>
+    <!-- #enddocregion toolbar-simple -->
+</p>
+
+	<!-- Include the notes collection with each note rendered as a separate NoteComponent -->
+    <!-- {{isFavorites}} -->
+    <mat-grid-list  cols="4" gutterSize="20px" >
+        <mat-grid-tile *ngFor="let book of favBooks | searchbook: searchString" >
+            <div *ngIf="isFavorites" class="card">
+                <app-book [book]="book" [favoritebooks]="favorites" (deleteBookEvent)="removeFavorite($event)" ></app-book>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>

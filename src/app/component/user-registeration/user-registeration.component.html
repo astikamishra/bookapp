@@ -1,0 +1,58 @@
+<div class="card">
+    <mat-card class="mat-card" >
+        <strong *ngIf="submitMessage" class="error-message">{{submitMessage}}</strong>
+        <form [formGroup]="regform" (ngSubmit)="registerUser()">
+        <mat-card-title class="mat-card-title">Register User</mat-card-title>
+        <mat-card-content>
+            <table>
+                <tr>
+                    <td>Username: </td> <td><input type="text" placeholder="Username" [formControlName]="'username'">
+                        <div *ngIf="f['username'].touched && f['username'].invalid">
+                            <p class="error-class" *ngIf="f['username'].errors?.['required']">username cannot be empty</p>
+                        </div>
+                    </td>
+                    <td>Password:</td> <td><input type="password" placeholder="password" [formControlName]="'password'">
+                        <div *ngIf="f['password'].touched && f['password'].invalid">
+                            <p class="error-class" *ngIf="f['password'].errors?.['required']">password cannot be empty</p>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>First Name: </td> <td><input type="text" placeholder="First Name" [formControlName]="'firstname'">
+                        <div *ngIf="f['firstname'].touched && f['firstname'].invalid">
+                            <p class="error-class" *ngIf="f['firstname'].errors?.['required']">firstname cannot be empty</p>
+                        </div>
+                    </td>
+                    <td>Last Name: </td> <td><input type="text" placeholder="Last Name" [formControlName]="'lastname'">
+                        <div *ngIf="f['lastname'].touched && f['lastname'].invalid">
+                            <p class="error-class" *ngIf="f['lastname'].errors?.['required']">lastname cannot be empty</p>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Email: </td><td><input type="text" placeholder="Email" [formControlName]="'email'">
+                        <div *ngIf="f['email'].touched && f['email'].invalid">
+                            <p class="error-class" *ngIf="f['email'].errors?.['required']">email cannot be empty</p>
+                        </div>
+                    </td>
+                    <td>Phone: </td><td><input type="number" placeholder="Phone" [formControlName]="'phone'">
+                        <div *ngIf="f['phone'].touched && f['phone'].invalid">
+                            <p class="error-class" *ngIf="f['phone'].errors?.['required']">phone cannot be empty</p>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                <td>Upload Profile Picture: </td><td><input type="file" [formControlName]="'uploadfile'" placeholder="Profile Picture" (change)="onFileChange($event)">
+                    <div *ngIf="f['uploadfile'].touched && f['uploadfile'].invalid">
+                        <p class="error-class" *ngIf="f['uploadfile'].errors?.['required']">uploadfile cannot be empty</p>
+                    </div>
+                </td>
+                </tr>
+                <tr>
+                <td colspan="4" align="right"><input [disabled]="!regform.valid" type="submit" value="Register"></td>
+                </tr>
+                </table>
+        </mat-card-content>
+        </form>
+    </mat-card>
+</div>

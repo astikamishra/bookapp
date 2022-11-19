@@ -1,0 +1,34 @@
+<p>
+    <!-- #docregion toolbar-simple -->
+    <mat-toolbar>
+    <span>Authors</span>
+    </mat-toolbar>
+    <!-- #enddocregion toolbar-simple -->
+</p>
+
+<div matAutocompleteOrigin #origin="matAutocompleteOrigin">
+    Author Name: <input
+      matInput
+      [(ngModel)]="authorname"
+      [matAutocomplete]="auto"
+      [matAutocompleteConnectedTo]="origin" class="authAutoComplete">
+  </div>
+  
+  <mat-autocomplete #auto="matAutocomplete">
+    <mat-option *ngFor="let option of authors | searchauth:authorname" [value]="option">{{option}}</mat-option>
+  </mat-autocomplete>
+
+    <mat-grid-list  cols="4" gutterSize="20px" >
+        <mat-grid-tile *ngFor="let book of books | searchbook: authorname" >
+            <div *ngIf="isBooks" class="card">
+            <app-book [book]="book" [favoritebooks]="[]"></app-book>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+
+<!-- <table>
+    <tr><th><h3>Author Name</h3></th></tr>
+    <tr *ngFor="let author of authors">
+        <td>{{author}}</td>
+    </tr>
+</table> -->

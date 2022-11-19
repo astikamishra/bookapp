@@ -1,0 +1,39 @@
+<br>
+<div class="card">
+<mat-card class="mat-card" >
+    <strong *ngIf="submitMessage" class="error-message">{{submitMessage}}</strong>
+    <form [formGroup]="form" (ngSubmit)="login()">
+    <mat-card-title class="mat-card-title">Login</mat-card-title>
+    <mat-card-content>
+        <table>
+            <tr>
+                <td>Username: </td><td><mat-form-field appearance="fill">
+                    <mat-label>username: </mat-label>
+                    <input type="text" name="username" matInput  formControlName="username" >
+                
+                    <mat-error *ngIf="f['username'].touched && f['username'].invalid">
+                        <p *ngIf="f['username'].errors?.['required']">username cannot be empty</p>
+                    </mat-error> 
+                
+                </mat-form-field></td>
+            </tr>
+            <tr>
+                <td>Password: </td><td><mat-form-field appearance="fill">
+                    <mat-label>Password: </mat-label>
+                    <input type="text" name="password" matInput  formControlName="password">
+                
+                    <mat-error *ngIf="f['password'].touched && f['password'].invalid">
+                        <p *ngIf="f['password'].errors?.['required']">username cannot be empty</p>
+                    </mat-error>
+                </mat-form-field></td>
+            </tr>
+            <tr>
+                <td><button [disabled]="!form.valid" mat-raised-button  color="accent">Login</button>
+                </td>
+                    <td><nav><a (click)="navigateToRegister()"> Register User </a></nav></td>
+            </tr>
+        </table>
+    </mat-card-content>
+    </form>
+</mat-card>
+</div>

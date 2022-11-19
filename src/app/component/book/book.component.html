@@ -1,0 +1,16 @@
+<mat-card class="mat-card">
+    <!-- <mat-card-header class="mat-card-header">{{book.title}}</mat-card-header> -->
+    <mat-card-title class="mat-card-title">{{book.title}}</mat-card-title>
+    <mat-card-content>
+        Author : {{book.author}}<br>
+        Publish Year: {{book.publishyear}}<br>
+        <!-- Image : {{book.availability.openlibrary_edition}} -->
+        <div *ngIf="book.availability">
+            <img [height]="100" [width]="80" src="//covers.openlibrary.org/b/olid/{{book.availability.openlibrary_edition}}-M.jpg" alt="Shiba Inu">
+        </div><br>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button color="warn" [disabled]="isFavorite" (click)="addFavorite(book)">Added to Favorite</button>
+        <button [disabled]="!isFavorite" (click)="removeFavorite(book)" mat-raised-button color="warn" >Remove from Favorite</button>
+    </mat-card-actions>
+</mat-card>
